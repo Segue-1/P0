@@ -12,7 +12,7 @@ static char * read_stdin();
 
 
 
-int main (int argc, char* argvp[]) {
+int main (int argc, char* argv[]) {
 
 	// Node stuff
 	struct Node node_m;
@@ -29,7 +29,7 @@ int main (int argc, char* argvp[]) {
 	}	
 	else if (argc == 2) {
 		// File was passed, check if it exists
-		if (access(fname, F_OK) == 0) {
+		if (access(argv[1], F_OK) == 0) {
 			printf("File exists, continuing...\n");
 		}
 		else {
