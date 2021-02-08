@@ -12,6 +12,7 @@ static char * read_stdin();
 
 
 
+
 int main (int argc, char* argv[]) {
 
 	// Node stuff
@@ -41,12 +42,22 @@ int main (int argc, char* argv[]) {
 	}
 	else if (argc == 1) {
 		// Test keyboard
-		char *input = read_stdin();
+		char *input = read_stdin(); // Read from STDIN
+		char *delim = " "; // For splitting string
+
 		printf("Getting input from stdin...\n");
 		printf("Simulate EOF by entering 0 \n");
 		printf("---------------------------\n");
 		printf("%s\n", input);
 		printf("---------------------------\n");
+
+		char *split_string = strtok(input, delim);
+	
+		while (split_string != NULL) {
+		
+			printf("%s\n", split_string);
+			split_string = strtok(NULL, delim);
+		}
 		free(input);
 		exit(0);
 	}
