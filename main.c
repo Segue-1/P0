@@ -9,7 +9,7 @@
 
 void print_usage();
 static char * read_stdin();
-char *my_strcpy(char *destination, char *source);
+char *load_file(char const * path);
 
 int main (int argc, char* argv[]) {
 
@@ -36,6 +36,110 @@ int main (int argc, char* argv[]) {
 			exit(0);
 		}
 		
+		//FILE *fp;
+		//FILE fopen(argv[1], r);
+		char *input = load_file(argv[1]);
+		char *delim = " \n "; // For splitting string
+
+		char *input_copy = NULL;
+		char *input_copy2 = NULL;
+
+	
+
+		input_copy = strdup(input);
+		input_copy2 = strdup(input);
+
+
+		// Check dupe and print input		
+		printf("HERE IS DUPE: %s\n", input_copy);
+
+		printf("Getting input from stdin...\n");
+		printf("Simulate EOF by entering 0 \n");
+		printf("---------------------------\n");
+		printf("%s\n", input);
+		printf("---------------------------\n");
+
+
+
+		// Use strtok just to count how many strings there are
+		// Multiple copies due to strtok altering original string
+		char *split_string = strtok(input, delim);
+		int rows = 0;
+
+		while (split_string != NULL) {
+		
+			printf("%s\n", split_string);
+			split_string = strtok(NULL, delim);
+			rows++;
+		}
+
+		printf("ROWS: %d\n", rows);
+ 
+		
+		
+		// Use strtok to get length of strings.
+		int string_length[rows - 1];
+		int j = 0;
+		char *split_string2 = strtok(input_copy, delim);
+		string_length[j] = strlen(split_string2);
+
+
+		while (split_string2 != NULL) {
+			if (j == (rows - 1)){
+				break;
+			}	
+			
+			string_length[j] = strlen(split_string2);
+			printf("string_lengt %d\n", string_length[j]);
+		
+			split_string2 = strtok(NULL, delim);
+			j++;	
+
+		}	
+
+		string_length[j] = strlen(split_string2);
+		printf("string_lengt %d\n", string_length[j]);
+
+
+		// Create 2d  array and store strings.
+		int columns = 32;
+		char string_storage[rows - 1][columns - 1];
+		int length_index = 0;
+		char *split_string3 = strtok(input_copy2, delim);
+		
+		j = 0;	
+		while (split_string3 != NULL) {
+			if (j == (rows - 1)) {
+				break;
+			}
+			int i = 0;
+			for (i = 0; i < string_length[length_index]; i++) {
+				string_storage[j][i] = split_string3[i];	
+				printf("%c", string_storage[j][i]);
+			}
+			length_index++;
+			printf("\n");
+			split_string3 = strtok(NULL, delim);
+			j++;
+			
+		}
+		int i = 0;
+		for (i = 0; i < string_length[length_index]; i++) {
+			string_storage[j][i] = split_string3[i];
+			printf("%c", string_storage[j][i]);
+		}
+		length_index++;
+		printf("\n");
+				
+		
+
+		free(input);
+		exit(0);
+
+			 
+
+
+
 		exit(0);
 	}
 	else if (argc == 1) {
@@ -185,14 +289,30 @@ static char * read_stdin(){
 }
 
 
-char *my_strcpy(char *destination, char *source) {
-	char *start = destination;
+char* load_file(char const* path)
+{
+    char* buffer = 0;
+    long length;
+    FILE * f = fopen (path, "rb"); //was "rb"
 
-	while(*source != '\0') {
-		*destination = *source;
-		destination++;
-		source++;
-	}
-	*destination = '\0';
-	return start;
+    if (f)
+    {
+      fseek (f, 0, SEEK_END);
+      length = ftell (f);
+      fseek (f, 0, SEEK_SET);
+      buffer = (char*)malloc ((length+1)*sizeof(char));
+      if (buffer)
+      {
+        fread (buffer, sizeof(char), length, f);
+      }
+      fclose (f);
+    }
+	buffer[length] = '\0';
+
+    //for (int i = 0; i < length; i++) {
+    //printf("buffer[%d] == %c\n", i, buffer[i]);
+    //}
+    //printf("buffer = %s\n", buffer);
+    
+	return buffer;
 }

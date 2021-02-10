@@ -4,5 +4,8 @@
 #include "node.h"
 
 void printInorder();
+void printPreorder();
+void printPostorder();
+void buildTree();
 
 #endif

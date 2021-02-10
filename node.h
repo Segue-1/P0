@@ -6,8 +6,18 @@
 #include <string.h>
 
 struct Node {
+	// Points to other nodes
+	struct Node *head;
+	struct Node *tail;
+	struct Node *left;
+	struct Node *right;
 
+	// Values
 	char test;
+	char *str;
+	int value;
+	char *dupllicates[];
+	
 
 };
 

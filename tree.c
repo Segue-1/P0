@@ -11,3 +11,20 @@ void printInorder(struct Node *node){
 	node->test = 'a';
 	
 }
+
+void printPreorder(struct Node *node) {
+
+	node->test = 'b';
+}
+
+void printPostorder(struct Node *node) {
+	
+	node->test = 'c';
+
+}
+
+void buildTree(){
+
+	printf("build tree\n");
+
+}
