@@ -6,6 +6,6 @@
 void printInorder();
 void printPreorder();
 void printPostorder();
-void buildTree();
+struct Node * buildTree(char string_storage[][31], int string_length[], int rows);
 
 #endif

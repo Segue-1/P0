@@ -14,9 +14,10 @@ struct Node {
 
 	// Values
 	char test;
-	char *str;
-	int value;
-	char *dupllicates[];
+	char *value_ptr;
+	char *value;
+	int score;
+	char *duplicates[];
 	
 
 };

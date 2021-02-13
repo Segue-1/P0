@@ -13,11 +13,6 @@ char *load_file(char const * path);
 
 int main (int argc, char* argv[]) {
 
-	// Node stuff
-	struct Node node_m;
-	printInorder(&node_m);
-	//printf("%c\n", node_m.test);
-
 	
 
 	// Check number of arguments
@@ -51,7 +46,7 @@ int main (int argc, char* argv[]) {
 
 
 		// Check dupe and print input		
-		printf("HERE IS DUPE: %s\n", input_copy);
+		printf("\n\n");
 
 		printf("Getting input from stdin...\n");
 		printf("Simulate EOF by entering 0 \n");
@@ -78,7 +73,7 @@ int main (int argc, char* argv[]) {
 		
 		
 		// Use strtok to get length of strings.
-		int string_length[rows - 1];
+		int string_length[rows];
 		int j = 0;
 		char *split_string2 = strtok(input_copy, delim);
 		string_length[j] = strlen(split_string2);
@@ -103,7 +98,7 @@ int main (int argc, char* argv[]) {
 
 		// Create 2d  array and store strings.
 		int columns = 32;
-		char string_storage[rows - 1][columns - 1];
+		char string_storage[rows][columns - 1];
 		int length_index = 0;
 		char *split_string3 = strtok(input_copy2, delim);
 		
@@ -115,10 +110,8 @@ int main (int argc, char* argv[]) {
 			int i = 0;
 			for (i = 0; i < string_length[length_index]; i++) {
 				string_storage[j][i] = split_string3[i];	
-				printf("%c", string_storage[j][i]);
 			}
 			length_index++;
-			printf("\n");
 			split_string3 = strtok(NULL, delim);
 			j++;
 			
@@ -126,10 +119,8 @@ int main (int argc, char* argv[]) {
 		int i = 0;
 		for (i = 0; i < string_length[length_index]; i++) {
 			string_storage[j][i] = split_string3[i];
-			printf("%c", string_storage[j][i]);
 		}
-		length_index++;
-		printf("\n");
+
 				
 		
 
@@ -161,9 +152,11 @@ int main (int argc, char* argv[]) {
 
 		printf("Getting input from stdin...\n");
 		printf("Simulate EOF by entering 0 \n");
+		printf("Below is the original input\n");
 		printf("---------------------------\n");
 		printf("%s\n", input);
 		printf("---------------------------\n");
+		printf("Below is the input split up\n\n");
 
 
 
@@ -179,15 +172,16 @@ int main (int argc, char* argv[]) {
 			rows++;
 		}
 
-		printf("ROWS: %d\n", rows);
+		//printf("ROWS: %d\n", rows);
  
 		
 		
 		// Use strtok to get length of strings.
-		int string_length[rows - 1];
+		int string_length[rows];
+		
 		int j = 0;
 		char *split_string2 = strtok(input_copy, delim);
-		string_length[j] = strlen(split_string2);
+		//string_length[j] = strlen(split_string2);
 
 
 		while (split_string2 != NULL) {
@@ -196,7 +190,7 @@ int main (int argc, char* argv[]) {
 			}	
 			
 			string_length[j] = strlen(split_string2);
-			printf("string_lengt %d\n", string_length[j]);
+			//printf("string_lengt %d\n", string_length[j]);
 		
 			split_string2 = strtok(NULL, delim);
 			j++;	
@@ -204,12 +198,13 @@ int main (int argc, char* argv[]) {
 		}	
 
 		string_length[j] = strlen(split_string2);
-		printf("string_lengt %d\n", string_length[j]);
+		//printf("string_lengt %d\n", string_length[j]);
+		
 
 
 		// Create 2d  array and store strings.
 		int columns = 32;
-		char string_storage[rows - 1][columns - 1];
+		char string_storage[rows][columns - 1];
 		int length_index = 0;
 		char *split_string3 = strtok(input_copy2, delim);
 		
@@ -221,23 +216,34 @@ int main (int argc, char* argv[]) {
 			int i = 0;
 			for (i = 0; i < string_length[length_index]; i++) {
 				string_storage[j][i] = split_string3[i];	
-				printf("%c", string_storage[j][i]);
 			}
 			length_index++;
-			printf("\n");
 			split_string3 = strtok(NULL, delim);
 			j++;
 			
 		}
+		
+		
+		
+
+		// There's a problem here I don't understand
 		int i = 0;
 		for (i = 0; i < string_length[length_index]; i++) {
 			string_storage[j][i] = split_string3[i];
-			printf("%c", string_storage[j][i]);
-		}
-		length_index++;
-		printf("\n");
-				
-		
+		} 
+
+
+		printf("MAIN rows: %d\n", rows);
+		printf("MAIN string_length[0] : %d\n", string_length[0]);
+		//Node stuff
+		struct Node *node_mainptr = buildTree(string_storage, string_length, rows);
+	
+
+		printf("node_mainptr says: %c\n", (*node_mainptr).test);
+
+	
+
+
 
 		free(input);
 		exit(0);
