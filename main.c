@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 
 #include "node.h"
@@ -238,8 +239,7 @@ int main (int argc, char* argv[]) {
 		//Node stuff
 		struct Node *node_mainptr = buildTree(string_storage, string_length, rows);
 	
-
-		printf("node_mainptr says: %c\n", (*node_mainptr).test);
+		
 
 	
 

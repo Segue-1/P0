@@ -4,20 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 struct Node {
-	// Points to other nodes
+	// Pointers for tree traversal
 	struct Node *head;
 	struct Node *tail;
 	struct Node *left;
 	struct Node *right;
 
-	// Values
-	char test;
-	char *value_ptr;
+	// Value just stores the string of the node 
+	// Score adds the ascii value of the first two chars
+	// Score is not used yet
+	// Dupe_str holds a duplicate string.
 	char *value;
+	char *dupe_str;
 	int score;
-	char *duplicates[];
+	bool is_dupe, has_dupe;
+	
 	
 
 };
