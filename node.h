@@ -9,7 +9,6 @@
 struct Node {
 	// Pointers for tree traversal
 	struct Node *head;
-	struct Node *tail;
 	struct Node *left;
 	struct Node *right;
 
@@ -19,7 +18,7 @@ struct Node {
 	// Dupe_str holds a duplicate string.
 	char *value;
 	char *dupe_str;
-	int score;
+	int score, tree_level;
 	bool is_dupe, has_dupe;
 	
 	

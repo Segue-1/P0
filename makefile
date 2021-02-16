@@ -18,5 +18,5 @@ main: $(OBJS1) $(SHARE)
 	gcc -o $(EXEC1) $^ $(CFLAGS)
 
 clean:
-	rm $(EXEC1) $(OBJS1) $(SHARE)
+	rm $(EXEC1) $(OBJS1) $(SHARE) output.inorder output.preorder output.postorder
 
