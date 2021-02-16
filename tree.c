@@ -76,7 +76,7 @@ struct Node * insert(struct Node * node, struct Node * insert_node) {
 
 	if (insert_node->score < node->score) {
 		insert_node->tree_level++;
-		node->left = insert (node->left, insert_node);
+		node->left = insert(node->left, insert_node);
 	}
 	else if (insert_node->score > node->score) {
 		insert_node->tree_level++;

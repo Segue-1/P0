@@ -1,0 +1,17 @@
+TO RUN:
+
+1. Type in "make" and hit enter
+2a. "./main + keyboard input" to build / print tree with keyboard
+2b. "./main < test.txt" to build / print tree with input from test.txt
+2c. "./main test.txt" to build / print tree with input from test.txt
+
+3. Type "make clean" to remove executables.  This will also remove log files.
+
+
+NOTE: There is one small issue.  In your video explaining P0 you had an example starting with da and ending with ad.
+      In my project ad will not be added to the tree because its lexical value is equivalent to the root node.  
+      Also, it's not stored as a duplicate because the characters are in different order.  So it is left off.
+      I tried to alter my rescursive insert function, but it would seg fault.  I wanted it to move left if it's equal
+      but couldn't figure out how to do it the right way.  Other than that it works perfectly.
+
+      Thanks for helping me and giving me extra time!
